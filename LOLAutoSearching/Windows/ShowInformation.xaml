@@ -1,0 +1,154 @@
+﻿<Window x:Class="LOLAutoSearching.Windows.ShowInformation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowState="Maximized"
+        WindowStyle="None"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        Title="LOLAutoSearching" Height="1080" Width="1920">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding Path=GameWindowHeight}"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="660"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding Path=GameWindowWidth}"/>
+            <ColumnDefinition Width="1270"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="test"/>
+        <StackPanel
+            Grid.Row="1" 
+            Grid.Column="0"
+            HorizontalAlignment="Right" 
+            Margin="0 0 10 0" 
+            Height="60"
+            Background="Wheat">
+            <StackPanel
+                x:Name="notLogin">
+                <Label Content="사용자 순서는 드래그 앤 드롭으로 이동 가능합니다." />
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="자동 정렬은 로그인해야 가능합니다!"/>
+                    <Button Content="로그인" Command="{Binding Login}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel
+                x:Name="onLogin">
+                <CheckBox Content="자동 정렬(포인트 감소)" Margin="5" VerticalAlignment="Center" IsChecked="{Binding AutoSearching}"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="ID :"/>
+                    <Label Content="{Binding ID}"/>
+                    <Label Content=" 포인트 :"/>
+                    <Label Content="{Binding Point}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <ListBox Grid.Row="2" Grid.Column="0" Height="400" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderThickness="0" ItemsSource="{Binding Path=Users}" 
+                PreviewMouseDoubleClick="ShowUserDetaileData"
+                PreviewMouseLeftButtonDown="ListBox_MouseDown"
+                PreviewMouseLeftButtonUp="ListBox_MouseUp">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" Height="75">
+                        <StackPanel.Background>
+                            <ImageBrush ImageSource="/LOLAutoSearching;component/ResourceDictionarys/P_LOL_1.jpg"/>
+                        </StackPanel.Background>
+                        <Grid Width="280" Margin="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="5 0 0 0" Foreground="#fdc113" Text="{Binding Path=data.userName}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Foreground="#fdc113" Text="{Binding Path=data.userLevel, StringFormat={} Lv : {0} }"/>
+                            <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Margin="0 0 10 0" Foreground="#fdc113" Text="{Binding Path=data.userTier}"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Foreground="White" HorizontalAlignment="Center" Text="{Binding champion.nameKr, StringFormat={}{0} }"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Foreground="White" HorizontalAlignment="Center" >
+                                <TextBlock.Text>
+                                    <MultiBinding    StringFormat="{}{0} / {1} / {2}">
+                                        <Binding Path="championData.kill"/>
+                                        <Binding Path="championData.death"/>
+                                        <Binding Path="championData.assist"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Foreground="White" Text="{Binding championData.gameTime, StringFormat={}{0}판}"/>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Foreground="White" Text="{Binding championData.cs, StringFormat=CS : {0}}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Foreground="White" Text="{Binding championData.kda, StringFormat=KDA : {0}}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" Foreground="White" Text="{Binding championData.winningRate, StringFormat=승률 {0}%}"/>
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row="2" Grid.Column="2" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="4">
+                <Label Background="White" Content="{Binding Path=GameType, StringFormat={}{0}}"/>
+                <Label Background="White"  Content="{Binding Path=DetaileDataDameUser.data.userName, StringFormat={}{0}}"/>
+                <Label Background="White" Content="{Binding Path=DetaileDataDameUser.champion.nameKr, StringFormat={}{0}}"/>
+            </StackPanel>
+            <ListBox Height="600" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderThickness="0" ItemsSource="{Binding Path=UsersGames}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="300" Orientation="Horizontal" Height="75">
+                            <StackPanel.Background>
+                                <ImageBrush ImageSource="{Binding Path=gameHistoryUser.win, StringFormat={}/LOLAutoSearching;component/ResourceDictionarys/{0}.png}"/>
+                            </StackPanel.Background>
+                            <StackPanel Width="55" VerticalAlignment="Center">
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=date, StringFormat={}{0}}"/>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=gameTime, StringFormat={}{0}}"/>
+                            </StackPanel>
+                            <StackPanel Width="25" VerticalAlignment="Center" Margin="5 0 0 0">
+                                <Image Width="20" Margin="1" Source="{Binding gameHistoryUser.spellData.spell1ID}"/>
+                                <Image Width="20" Margin="1" Source="{Binding gameHistoryUser.spellData.spell2ID}"/>
+                            </StackPanel>
+                            <StackPanel Width="65" VerticalAlignment="Center" Margin="2">
+                                <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                                    <TextBlock.Text>
+                                        <MultiBinding    StringFormat="{} {0} / {1} / {2}">
+                                            <Binding Path="gameHistoryUser.championData.kill"/>
+                                            <Binding Path="gameHistoryUser.championData.death"/>
+                                            <Binding Path="gameHistoryUser.championData.assist"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=gameHistoryUser.championData.kda, StringFormat={}{0} KDA}"/>
+                                <TextBlock HorizontalAlignment="Center" Text="-인분"/>
+                            </StackPanel>
+                            <StackPanel Width="70"  VerticalAlignment="Center" Margin="2">
+
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding gameHistoryUser.championData.cs, StringFormat=CS : {0}}"/>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding gameHistoryUser.championData.kp, StringFormat={}{0}KP}"/>
+                            </StackPanel>
+
+                            <StackPanel Width="85" VerticalAlignment="Center" Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="20" Margin="1" Source="{Binding Path=gameHistoryUser.itemData.itemImage0}"/>
+                                    <Image Width="20" Margin="1" Source="{Binding gameHistoryUser.itemData.itemImage1}"/>
+                                    <Image Width="20" Margin="1" Source="{Binding gameHistoryUser.itemData.itemImage2}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="20" Margin="1" Source="{Binding gameHistoryUser.itemData.itemImage3}"/>
+                                    <Image Width="20" Margin="1" Source="{Binding gameHistoryUser.itemData.itemImage4}"/>
+                                    <Image Width="20" Margin="1" Source="{Binding gameHistoryUser.itemData.itemImage5}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>

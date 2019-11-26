@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LOLAutoSearching", "LOLAutoSearching\LOLAutoSearching.csproj", "{8CC0F4F0-6325-474C-A4FB-2FE8209B37BE}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LOLAutoSearchingInstaller", "LOLAutoSearchingInstaller\LOLAutoSearchingInstaller.vdproj", "{1B70FF46-3998-47B3-8324-8A05983FA8A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LOLSearchInstaller", "LOLSearchInstaller\LOLSearchInstaller.csproj", "{AAC23A5C-8ADD-4EAE-80CA-E1E46390E3C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CC0F4F0-6325-474C-A4FB-2FE8209B37BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CC0F4F0-6325-474C-A4FB-2FE8209B37BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CC0F4F0-6325-474C-A4FB-2FE8209B37BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CC0F4F0-6325-474C-A4FB-2FE8209B37BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B70FF46-3998-47B3-8324-8A05983FA8A5}.Debug|Any CPU.ActiveCfg = Debug
+		{1B70FF46-3998-47B3-8324-8A05983FA8A5}.Debug|Any CPU.Build.0 = Debug
+		{1B70FF46-3998-47B3-8324-8A05983FA8A5}.Release|Any CPU.ActiveCfg = Release
+		{AAC23A5C-8ADD-4EAE-80CA-E1E46390E3C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAC23A5C-8ADD-4EAE-80CA-E1E46390E3C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAC23A5C-8ADD-4EAE-80CA-E1E46390E3C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAC23A5C-8ADD-4EAE-80CA-E1E46390E3C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16A5C3E3-6A3C-452E-9B39-1402B11EF808}
+	EndGlobalSection
+EndGlobal
