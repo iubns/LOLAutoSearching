@@ -43,7 +43,7 @@ namespace LOLAutoSearching.Windows
             }
 
             JObject result = await Apis.GetNewVersion();
-            if (result["NewVersion"].ToString() != "1.0.0.26")
+            if (result["NewVersion"].ToString() != "1.0.0.27")
             {
                 MessageBox.Show($"\"{result["PatchContent"].ToString() }\"이(가) 적용된 새로운 버전{ result["NewVersion"].ToString() }이 있습니다.\n업데이트를 진행 합니다.", "LOLSearch");
                 Apis.Update();
