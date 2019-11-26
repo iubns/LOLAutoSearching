@@ -1,2 +1,2 @@
-# LOLAutoSearching-
+# LOLAutoSearching
 LOLAutoSearching 
