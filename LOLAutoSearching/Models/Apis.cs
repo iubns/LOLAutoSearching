@@ -158,7 +158,7 @@ namespace LOLAutoSearching.Models
             {
                 string kdaValue = string.Empty;
 
-                if (jToken.Value<string>("deaths") != "0")
+                if (jToken.Value<float>("deaths") != 0)
                 {
                     kdaValue = string.Format("{0:F2}", (jToken.Value<float>("kills") + jToken.Value<float>("assists")) / jToken.Value<float>("deaths"));
                 }
@@ -169,7 +169,15 @@ namespace LOLAutoSearching.Models
 
                 DateTime gametime = new DateTime(2000, 1, 1, 0, 0, 0, DateTimeKind.Local).AddSeconds(jToken.Value<double>("gameDuration"));
                 DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local).AddMilliseconds(jToken.Value<double>("gameCreation"));
-
+                string kpValue = string.Empty;
+                if(jToken.Value<int>("teamKill") == 0)
+                {
+                    kpValue = "0%";
+                }
+                else
+                {
+                    kpValue = $"{((jToken.Value<int>("kills") + jToken.Value<int>("assists")) * 100 / jToken.Value<int>("teamKill")).ToString()}% ";
+                }
                 games.Add(new Game()
                 {
                     gameHistoryUser = new GameHistoryUser()
@@ -182,7 +190,7 @@ namespace LOLAutoSearching.Models
                             assist = jToken.Value<string>("assists"),
                             cs = $"{jToken.Value<string>("cs")}({jToken.Value<string>("cspm")})",
                             kda = kdaValue,
-                            kp = $"{((jToken.Value<int>("kills") + jToken.Value<int>("assists")) * 100 / jToken.Value<int>("teamKill")).ToString()}% ",
+                            kp = kpValue,
                         },
                         spellData = new SpellData()
                         {

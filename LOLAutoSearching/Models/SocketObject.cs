@@ -13,7 +13,7 @@ namespace CapstoneDesign
         private static void SocketReady()
         {
             client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPAddress ipAddress = IPAddress.Parse("52.141.1.54");
+            IPAddress ipAddress = IPAddress.Parse("112.145.135.126");
 
             //IPAddress ipAddress = IPAddress.Parse("192.168.0.9");
             IPEndPoint ipep = new IPEndPoint(ipAddress, 9001);
@@ -26,15 +26,13 @@ namespace CapstoneDesign
                 try
                 {
                     Debug.Assert(client.Connected);
-                    ipAddress = IPAddress.Parse("112.145.135.126");
+                    ipAddress = IPAddress.Parse("221.150.243.58");
                     ipep = new IPEndPoint(ipAddress, 9001);
                     client.Connect(ipep);
                 }
                 catch
                 {
                     Debug.Assert(client.Connected);
-                    ipAddress = IPAddress.Parse("221.150.243.58");
-                    ipep = new IPEndPoint(ipAddress, 9001);
                     client.Connect(ipep);
                 }
             }

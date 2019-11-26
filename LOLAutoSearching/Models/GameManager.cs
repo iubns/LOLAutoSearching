@@ -174,7 +174,7 @@ namespace LOLAutoSearching.Models
             }
             else
             {
-                Debug.Assert(false);
+                //Debug.Assert(false);
             }
             Debug.WriteLine("게임 타입 : " + googleApiResult);
             return;
